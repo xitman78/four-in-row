@@ -40,19 +40,7 @@ class Grid extends React.Component {
     }
 
     getInitState(cols, rows) {
-        const allRows = [];
-
-        const colsArr = [];
-
-        for (let i = 0; i < cols; i++) {
-            colsArr.push(false);
-        }
-
-        for (let i = 0; i < rows; i++) {
-            allRows.push(colsArr.slice());
-        }
-
-        return allRows;
+        return new Array(rows).fill([]).map(_ => new Array(cols).fill(false));
     }
 
     handleCellClick(rowIndex, colIndex) {
