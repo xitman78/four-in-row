@@ -5,8 +5,3 @@
 .grid-row.four-in-row .grid-cell {
     background-color: red;
 }
-
-button.clear-button {
-    margin-top: 10px;
-    padding: 10px;
-}

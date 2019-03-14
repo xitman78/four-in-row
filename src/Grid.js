@@ -1,30 +1,6 @@
 import React from 'react'
+import Row from './Row'
 import './Grid.css'
-
-const Cell = ({row, col, isActive, onChange}) => (
-    <div 
-        className={'grid-cell' + (isActive ? ' active' : '')}
-        onClick={() => onChange(row, col)}
-    />
-);
-
-
-function isFourInRow(row) {
-    let counter = 0;
-
-    for (let val of row) {
-        if (val) {
-            counter++;
-            if (counter === 4) {
-                return true;
-            }
-        } else {
-            counter = 0;
-        }
-    }
-
-    return false;
-}
 
 class Grid extends React.Component {
 
@@ -70,18 +46,7 @@ class Grid extends React.Component {
         return (
             <div>
                { 
-                   this.state.rows.map((row, rowIndex) => (
-                    <div key={rowIndex} className={'grid-row' + (isFourInRow(row) ? ' four-in-row' : '')}>
-                        {row.map((cellValue, colIndex) => (
-                            <Cell key={colIndex} 
-                            row={rowIndex} 
-                            col={colIndex} 
-                            isActive={cellValue}
-                            onChange={this.handleCellClick}
-                            />
-                        ))}
-                    </div>
-                    ))
+                   this.state.rows.map((row, rowIndex) => <Row key={rowIndex} rowIndex={rowIndex} rowData={row} onChange={this.handleCellClick}/>)
                }
                <button className="clear-button" onClick={this.handleClear}>Clear</button>
             </div>
