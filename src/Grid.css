@@ -1,0 +1,20 @@
+.grid-row {
+    display: block;
+}
+
+.grid-cell {
+    width: 100px;
+    height: 100px;
+    border: 1px solid black;
+    display: inline-block;
+    background-color: white;
+}
+
+.grid-cell.active {
+    background-color: orange;
+}
+
+button.clear-button {
+    margin-top: 10px;
+    padding: 10px;
+}
