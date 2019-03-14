@@ -2,6 +2,10 @@
     display: block;
 }
 
+.grid-row.four-in-row .grid-cell {
+    background-color: red;
+}
+
 .grid-cell {
     width: 100px;
     height: 100px;

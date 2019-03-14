@@ -8,23 +8,51 @@ const Cell = ({row, col, isActive, onChange}) => (
     />
 );
 
+
+function isFourInRow(row) {
+    let counter = 0;
+
+    for (let val of row) {
+        if (val) {
+            counter++;
+            if (counter === 4) {
+                return true;
+            }
+        } else {
+            counter = 0;
+        }
+    }
+
+    return false;
+}
+
 class Grid extends React.Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.handleCellClick = this.handleCellClick.bind(this);
         this.handleClear = this.handleClear.bind(this);
 
         this.state = {
-            rows: [
-                [false, false, false, false, false],
-                [false, false, false, false, false],
-                [false, false, false, false, false],
-                [false, false, false, false, false],
-                [false, false, false, false, false],
-            ]
+            rows: this.getInitState(props.col, props.row)
         }
+    }
+
+    getInitState(cols, rows) {
+        const allRows = [];
+
+        const colsArr = [];
+
+        for (let i = 0; i < cols; i++) {
+            colsArr.push(false);
+        }
+
+        for (let i = 0; i < rows; i++) {
+            allRows.push(colsArr.slice());
+        }
+
+        return allRows;
     }
 
     handleCellClick(rowIndex, colIndex) {
@@ -44,13 +72,7 @@ class Grid extends React.Component {
     handleClear() {
 
         this.setState({
-            rows: [
-                [false, false, false, false, false],
-                [false, false, false, false, false],
-                [false, false, false, false, false],
-                [false, false, false, false, false],
-                [false, false, false, false, false],
-            ]
+            rows: this.getInitState(this.props.col, this.props.row)
         });
 
     }
@@ -61,7 +83,7 @@ class Grid extends React.Component {
             <div>
                { 
                    this.state.rows.map((row, rowIndex) => (
-                    <div key={rowIndex} className="grid-row">
+                    <div key={rowIndex} className={'grid-row' + (isFourInRow(row) ? ' four-in-row' : '')}>
                         {row.map((cellValue, colIndex) => (
                             <Cell key={colIndex} 
                             row={rowIndex} 
