@@ -17,16 +17,17 @@ function isFourInRow(row) {
   return false;
 }
 
-const Row = ({ rowData, rowIndex, onChange }) => (
+const Row = ({ rowData, redColumns, rowIndex, onChange }) => (
   <div className={'grid-row' + (isFourInRow(rowData) ? ' four-in-row' : '')}>
-    {rowData.map((cellValue, colIndex) => (
-      <Cell key={colIndex}
-        row={rowIndex}
-        col={colIndex}
-        isActive={cellValue}
-        onChange={onChange}
-      />
-    ))}
+      {rowData.map((cellValue, colIndex) => (
+        <Cell key={colIndex}
+          row={rowIndex}
+          col={colIndex}
+          isActive={cellValue}
+          isRed={redColumns[colIndex]}
+          onChange={onChange}
+        />
+      ))}
   </div>
 );
 

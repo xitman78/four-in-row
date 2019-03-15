@@ -9,3 +9,7 @@
 .grid-cell.active {
   background-color: orange;
 }
+
+.grid-cell.red {
+  background-color: red;
+}
